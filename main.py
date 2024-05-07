@@ -11,6 +11,10 @@ app = FastAPI()
 
 origins = [
     "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "https://vercel.com/pramudyawseriousgmailcoms-projects/hilawdoc-frontend/7p7BTVtap5DQvRuPt76b9c4oYG5U",
+    "https://hilawdoc-frontend-d7bjpgn9c-pramudyawseriousgmailcoms-projects.vercel.app",
+    "https://hilawdoc-frontend-jad9s3rvx-pramudyawseriousgmailcoms-projects.vercel.app"
 ]
 app.add_middleware(
     CORSMiddleware,
