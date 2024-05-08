@@ -87,7 +87,7 @@ async def get_current_active_user(
 # Endpoints
 @app.get("/")
 async def index():
-    return {"message": "Welcome to HiLAWDoc!"}
+    return {"message": "Welcome to HiLAWDoc Auth Service!"}
     
 
 @app.post("/register")
