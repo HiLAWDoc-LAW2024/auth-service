@@ -9,4 +9,6 @@ venv.bak/
 
 # Python cache files
 __pycache__/
+
+# Vercel
 .vercel
