@@ -106,7 +106,7 @@ async def register_user(user: User):
         return {"message": "User registration success!", "user": response_user}
     except Exception as e:
         if e.code == '23505':
-            raise HTTPException(status_code=400, detail="username or email has been taken")
+            raise HTTPException(status_code=400, detail="Username or Email has been taken")
         else:
             raise HTTPException(status_code=400, detail="Error registering user")
 
