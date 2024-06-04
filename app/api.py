@@ -2,9 +2,11 @@ from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime, timedelta
-from .models import Token, TokenData, User
 from jose import JWTError, jwt
+
+from .models import Token, TokenData, User, Doctor
 from .configs import pwd_context, oauth2_scheme, supabase, SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES, SUPABASE_URL, SUPABASE_KEY
+
 
 # App
 app = FastAPI()
@@ -98,6 +100,7 @@ async def register_user(user: User):
         "email": user.email,
         "full_name": user.full_name,
         "password": hashed_password,
+        "is_doctor": False,
         "disabled": False
     }
     try:
@@ -124,7 +127,8 @@ async def login_for_access_token(
         )
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
-        data={"sub": user['username']}, expires_delta=access_token_expires
+        data={"sub": user['username'], "role": "doctor" if user['is_doctor'] else "user"}, 
+        expires_delta=access_token_expires
     )
     return {"access_token": access_token, "token_type": "bearer"}
 
